@@ -31,7 +31,7 @@ import { NotificationManager } from "react-notifications"
 
 import SaleAbi from "constants/abi/Sale.json"
 import getUseSaleInfo from "hooks/useSaleInfo"
-import getUseIsAdmin from "hooks/useIsAdmin"
+//import getUseIsAdmin from "hooks/useIsAdmin"
 const DEFAULT_DATE_FORMAT = "MMM DD, h:mm A"
 import Web3 from "web3"
 import dayjs from "dayjs"
@@ -57,7 +57,7 @@ const OwnerCard = ({ sale }) => {
   const [earningsWithdrawn, setEarningsWithdrawn] = useState(null)
   const [BNBRaised, setBNBRaised] = useState(null)
   const [owner, setOwner] = useState(null)
-  const [isUserAdmin, setIsUserAdmin] = useState(null)
+  // const [isUserAdmin, setIsUserAdmin] = useState(null)
   const [isSaleSuccess, setIsSaleSuccess] = useState(null)
 
 
@@ -138,14 +138,6 @@ const OwnerCard = ({ sale }) => {
         // You can perform further actions here
         const act = await web3.eth.getAccounts()
         setAccount(act[0])
-        try {
-          const res = await getUseIsAdmin(act[0]).then(res => {
-            setIsUserAdmin(res)
-          })
-
-        } catch (e) {
-          console.log(e)
-        }
       } catch (e) {
         // User denied access
         console.log(e)
@@ -156,20 +148,17 @@ const OwnerCard = ({ sale }) => {
   }
   
   async function getSaleSuccess () {
-    const res = await getUseSaleIsSuccess(sale.address).then(res => {
-      setIsSaleSuccess(res)
-    })
+    const res = await getUseSaleIsSuccess(sale.address)
+    setIsSaleSuccess(res)
   }
 
   async function getSaleInfo () {
-    const res = await getUseSaleInfo(sale.address).then(res => {
-      setGetInfo(res)
-    })
+    const res = await getUseSaleInfo(sale.address)
+    setGetInfo(res)
   }
   async function getFinished () {
-    const res = await getUseSaleFinished(sale.address).then(res => {
-      setIsFinished(res)
-    })
+    const res = await getUseSaleFinished(sale.address)
+    setIsFinished(res)
   }
   async function getOwner () {
     if (!getInfo) return
@@ -234,7 +223,7 @@ const OwnerCard = ({ sale }) => {
 
   return (
     <React.Fragment>
-      {isUserAdmin || isSaleOwner ? (
+      {isSaleOwner ? (
         <div className="buy-detail-card" id="buy-card">
           <div className="d-flex w-100 flex-wrap mb-0 py-1 border-white border-opacity-50 justify-content-center">
             <div className="fs-5 fw-bold mb-2">SALE OWNER ADMINISTRATION</div>

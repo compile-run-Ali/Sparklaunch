@@ -89,9 +89,8 @@ const SaleDetailCard = ({ sale }) => {
   const rendererCountDown = isStart ? renderer : renderer2
 
   async function getSaleInfo () {
-    const res = await getUseSaleInfo(sale.address).then(res => {
-      setGetInfo(res)
-    })
+    const res = await getUseSaleInfo(sale.address)
+    setGetInfo(res)
   }
   async function getBNBRaised() {
     if (!getInfo) return;
