@@ -33,12 +33,12 @@ const app = (
   <DAppProvider config={config}>
     <Provider store={store}>
       <BrowserRouter>
-        Sparklaunch
+        <NotificationContainer />
+        <App />
       </BrowserRouter>
     </Provider>
   </DAppProvider>
 )
 
 ReactDOM.render(app, document.getElementById("root"))
-// serviceWorker.unregister()
-
+serviceWorker.unregister()
