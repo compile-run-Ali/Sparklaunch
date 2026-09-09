@@ -7,7 +7,8 @@ import StaticLocker from "pages/Public/StaticLocker"
 import LockerNotFound from "pages/Public/LockerNotFound"
 import { createRequire } from 'module';
 
-const require = createRequire(import.meta.url);
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
 
 const connectedRoutes = [
   { path: "/thispathwillnevershow", component: Connected },
