@@ -6,6 +6,10 @@ import SaleDetails from "pages/Public/SaleDetails"
 import StaticLocker from "pages/Public/StaticLocker"
 import LockerNotFound from "pages/Public/LockerNotFound"
 import { createRequire } from 'module';
+import { createRequire } from 'module';
+
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
 
 const require = createRequire(import.meta.url);
 
